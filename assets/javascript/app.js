@@ -1,7 +1,7 @@
 // create array for teams in variable topics
 
 var top5 =[
-    "Liverpool", "", "Man City", "Tottenham", "Arsenal", "Man United"];
+    "Liverpool", "", "Man City", "Tottenham", "Arsenal", "Man United", "Men in Blazers"];
 
     $("button").on("click", function() {
 
@@ -33,13 +33,14 @@ var top5 =[
   
               // Creating and storing an image tag
               var teamImage = $("<img>");
-
+              
+              
+  
               // Setting the src attribute of the image to a property pulled off the result item and creating still and animate attribute for gifs.
             teamImage.attr("src", results[i].images.fixed_height_small.url);
-
-            teamImage.attr("data-still",results[i].images.fixed_height_small_still.url);
+            teamImage.attr("data-still", results[i].images.fixed_height_small_still.url);
             teamImage.attr("data-animate", results[i].images.fixed_height_small.url);
-            teamImage.attr("data-state", "still");
+            teamImage.addClass("goal")
 
 
               // Appending the paragraph and image tag 
@@ -48,22 +49,23 @@ var top5 =[
   
               
              $("#teamGif").prepend(teamDiv);
+
             }
           });
 
-
+          
         //How to get to work so theres no need to load more images as in the example???
-
-        $(".gif").on("click", function() {
+        $(document).on("click", function() {
         var state = $(this).attr("data-state");
             if (state === "still") {
-                teamImage.attr("src", $(this).attr("data-animate"));
-               teamImage.attr("data-state", "animate");
+                $(this).attr("src", $(this).data("data-animate"));
+               $(this).attr("data-state", "animate");
               } else {
-                teamImage.attr("src", $(this).attr("data-still"));
-                teamImage.attr("data-state", "still");
+                $(this).attr("src", $(this).data("data-still"));
+                $(this).attr("data-state", "still");
               }
+            
+          });
             });
 
-        });
-   
+     
